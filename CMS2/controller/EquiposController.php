@@ -32,12 +32,12 @@ class EquiposController
         $rowset = $this->db->query("SELECT * FROM equipos ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
-        $noticias = array();
+        $equipos = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Equipos($row));
+            array_push($equipos,new Equipos($row));
         }
 
-        $this->view->vista("admin","equipos/index", $noticias);
+        $this->view->vista("admin","equipos/index", $equipos);
 
     }
 
@@ -50,16 +50,16 @@ class EquiposController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM equipos WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Equipos($row);
+        $equipo = new Equipos($row);
 
-        if ($noticia->activo == 1){
+        if ($equipo->activo == 1){
 
             //Desactivo la noticia
             $consulta = $this->db->exec("UPDATE equipos SET activo=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$noticia->titulo</strong> se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> se ha desactivado correctamente.") :
                 $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
@@ -70,7 +70,7 @@ class EquiposController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$noticia->titulo</strong> se ha activado correctamente.") :
+                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> se ha activado correctamente.") :
                 $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
@@ -85,16 +85,16 @@ class EquiposController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM equipos WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Equipos($row);
+        $equipo = new Equipos($row);
 
-        if ($noticia->home == 1){
+        if ($equipo->home == 1){
 
             //Quito la noticia de la home
             $consulta = $this->db->exec("UPDATE equipos SET home=0 WHERE id='$id'");
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$noticia->titulo</strong> ya no se muestra en la home.") :
+                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> ya no se muestra en la home.") :
                 $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
@@ -105,7 +105,7 @@ class EquiposController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$noticia->titulo</strong> ahora se muestra en la home.") :
+                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> ahora se muestra en la home.") :
                 $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
@@ -119,13 +119,13 @@ class EquiposController
         //Obtengo la noticia
         $rowset = $this->db->query("SELECT * FROM equipos WHERE id='$id' LIMIT 1");
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Equipos($row);
+        $equipo = new Equipos($row);
 
         //Borro la noticia
         $consulta = $this->db->exec("DELETE FROM equipos WHERE id='$id'");
 
         //Borro la imagen asociada
-        $archivo = $_SESSION['public']."img/".$noticia->imagen;
+        $archivo = $_SESSION['public']."img/".$equipo->imagen;
         $texto_imagen = "";
         if (is_file($archivo)){
             unlink($archivo);
@@ -145,10 +145,10 @@ class EquiposController
         $this->view->permisos("equipos");
 
         //Creo un nuevo usuario vacío
-        $noticia = new Equipos();
+        $equipo = new Equipos();
 
         //Llamo a la ventana de edición
-        $this->view->vista("admin","equipos/editar", $noticia);
+        $this->view->vista("admin","equipos/editar", $equipo);
 
     }
 
@@ -162,7 +162,7 @@ class EquiposController
 
             //Recupero los datos del formulario
             $titulo = filter_input(INPUT_POST, "titulo", FILTER_SANITIZE_STRING);
-            $entradilla = filter_input(INPUT_POST, "entradilla", FILTER_SANITIZE_STRING);
+            $desc = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
             $autor = filter_input(INPUT_POST, "autor", FILTER_SANITIZE_STRING);
             $fecha = filter_input(INPUT_POST, "fecha", FILTER_SANITIZE_STRING);
             $texto = filter_input(INPUT_POST, "texto", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -183,8 +183,8 @@ class EquiposController
 
                 //Creo una nueva noticia
                 $consulta = $this->db->exec("INSERT INTO equipos 
-                    (titulo, entradilla, autor, fecha, texto, slug, imagen) VALUES 
-                    ('$titulo','$entradilla','$autor','$fecha','$texto','$slug','$imagen')");
+                    (titulo, desc, autor, fecha, texto, slug, imagen) VALUES 
+                    ('$titulo','$desc','$autor','$fecha','$texto','$slug','$imagen')");
 
                 //Subo la imagen
                 if ($imagen){
@@ -205,7 +205,7 @@ class EquiposController
 
                 //Actualizo la noticia
                 $this->db->exec("UPDATE equipos SET 
-                    titulo='$titulo',entradilla='$entradilla',autor='$autor',
+                    titulo='$titulo',entradilla='$desc',autor='$autor',
                     fecha='$fecha',texto='$texto',slug='$slug' WHERE id='$id'");
 
                 //Subo y actualizo la imagen
@@ -231,10 +231,10 @@ class EquiposController
             //Obtengo la noticia
             $rowset = $this->db->query("SELECT * FROM equipos WHERE id='$id' LIMIT 1");
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $noticia = new Equipos($row);
+            $equipo = new Equipos($row);
 
             //Llamo a la ventana de edición
-            $this->view->vista("admin","equipos/editar", $noticia);
+            $this->view->vista("admin","equipos/editar", $equipo);
         }
 
     }

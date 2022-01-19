@@ -29,13 +29,13 @@ class AppController
         $rowset = $this->db->query("SELECT * FROM equipos WHERE activo=1 AND home=1 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
-        $noticias = array();
+        $equipos = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Equipos($row));
+            array_push($equipos,new Equipos($row));
         }
 
         //Llamo a la vista
-        $this->view->vista("app", "index", $noticias);
+        $this->view->vista("app", "index", $equipos);
     }
 
     public function acercade(){
@@ -51,13 +51,13 @@ class AppController
         $rowset = $this->db->query("SELECT * FROM equipos WHERE activo=1 ORDER BY fecha DESC");
 
         //Asigno resultados a un array de instancias del modelo
-        $noticias = array();
+        $equipos = array();
         while ($row = $rowset->fetch(\PDO::FETCH_OBJ)){
-            array_push($noticias,new Equipos($row));
+            array_push($equipos,new Equipos($row));
         }
 
         //Llamo a la vista
-        $this->view->vista("app", "equipos", $noticias);
+        $this->view->vista("app", "equipos", $equipos);
 
     }
 
@@ -68,10 +68,10 @@ class AppController
 
         //Asigno resultado a una instancia del modelo
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
-        $noticia = new Equipos($row);
+        $equipo = new Equipos($row);
 
         //Llamo a la vista
-        $this->view->vista("app", "noticia", $noticia);
+        $this->view->vista("app", "noticia", $equipo);
 
     }
 }
