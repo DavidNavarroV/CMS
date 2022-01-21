@@ -9,13 +9,13 @@
                 <div class="card-stacked">
                     <div class="card-content">
                         <h4><?php echo $row->titulo ?></h4>
-                        <p><?php echo $row->entradilla ?></p>
+                        <p><?php echo $row->desc ?></p>
                     </div>
                     <div class="card-info">
                         <p><?php echo date("d/m/Y", strtotime($row->fecha)) ?></p>
                     </div>
                     <div class="card-action">
-                        <a href="<?php echo $_SESSION['home']."noticia/".$row->slug ?>">Más información</a>
+                        <a href="<?php echo $_SESSION['home']."equipo/".$row->slug ?>">Más información</a>
                     </div>
                 </div>
             </div>

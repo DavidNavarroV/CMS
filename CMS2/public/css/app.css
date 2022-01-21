@@ -15,11 +15,11 @@ nav{
     box-shadow: none;
     -webkit-box-shadow: none;
     padding: 0 2rem;
+    height: 70px;
 }
 
 nav img{
     width: 8rem;
-    padding-top: 0.8rem;
 }
 
 main {

@@ -8,7 +8,7 @@ class Equipos
     var $id;
     var $titulo;
     var $slug;
-    var $entradilla;
+    var $desc;
     var $texto;
     var $activo;
     var $home;
@@ -21,7 +21,7 @@ class Equipos
         $this->id = ($data) ? $data->id : null;
         $this->titulo = ($data) ? $data->titulo : null;
         $this->slug = ($data) ? $data->slug : null;
-        $this->entradilla = ($data) ? $data->entradilla : null;
+        $this->desc = ($data) ? $data->desc : null;
         $this->texto = ($data) ? $data->texto : null;
         $this->activo = ($data) ? $data->activo : null;
         $this->home = ($data) ? $data->home : null;

@@ -193,7 +193,7 @@ class AdministradoresController
             $usuario = filter_input(INPUT_POST, "usuario", FILTER_SANITIZE_STRING);
             $clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
             $usuarios = (filter_input(INPUT_POST, 'administradores', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
-            $noticias = (filter_input(INPUT_POST, 'equipos', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
+            $equipos = (filter_input(INPUT_POST, 'equipos', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
             $cambiar_clave = (filter_input(INPUT_POST, 'cambiar_clave', FILTER_SANITIZE_STRING) == 'on') ? 1 : 0;
 
             //Encripto la clave
@@ -202,7 +202,7 @@ class AdministradoresController
             if ($id == "nuevo"){
 
                 //Creo un nuevo usuario
-                $this->db->exec("INSERT INTO administradores (usuario, clave, equipos, administradores) VALUES ('$usuario','$clave_encriptada',$noticias,$usuarios)");
+                $this->db->exec("INSERT INTO administradores (usuario, clave, equipos, administradores) VALUES ('$usuario','$clave_encriptada',$equipos,$usuarios)");
 
                 //Mensaje y redirección
                 $this->view->redireccionConMensaje("admin/administradores","green","El usuario <strong>$usuario</strong> se creado correctamente.");
@@ -211,8 +211,8 @@ class AdministradoresController
 
                 //Actualizo el usuario
                 ($cambiar_clave) ?
-                    $this->db->exec("UPDATE administradores SET usuario='$usuario',clave='$clave_encriptada',equipos=$noticias,administradores=$usuarios WHERE id='$id'") :
-                    $this->db->exec("UPDATE administradores SET usuario='$usuario',equipos=$noticias,administradores=$usuarios WHERE id='$id'");
+                    $this->db->exec("UPDATE administradores SET usuario='$usuario',clave='$clave_encriptada',equipos=$equipos,administradores=$usuarios WHERE id='$id'") :
+                    $this->db->exec("UPDATE administradores SET usuario='$usuario',equipos=$equipos,administradores=$usuarios WHERE id='$id'");
 
                 //Mensaje y redirección
                 $this->view->redireccionConMensaje("admin/administradores","green","El usuario <strong>$usuario</strong> se actualizado correctamente.");

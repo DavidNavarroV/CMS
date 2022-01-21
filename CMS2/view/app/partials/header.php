@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Noticias de Harry Potter</title>
+    <title>NBA</title>
 
     <!--CSS-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="<?php echo $_SESSION['home'] ?>" class="brand-logo" title="Inicio">
-            <img src="<?php echo $_SESSION['public'] ?>img/logo.svg" alt="Logo Harry Potter">
+            <img src="<?php echo $_SESSION['public'] ?>img/nba.jpg" alt="Logo Harry Potter">
         </a>
 
         <!--Botón menú móviles-->
@@ -29,13 +29,13 @@
                 <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a>
             </li>
             <li>
-                <a href="<?php echo $_SESSION['home'] ?>noticias" title="Noticias">Noticias</a>
+                <a href="<?php echo $_SESSION['home'] ?>equipos" title="Noticias">Noticias</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
             </li>
             <li>
-                <a href="<?php echo $_SESSION['home'] ?>admin" title="Panel de administración"
+                <a href="<?php echo $_SESSION['home'] ?>panel" title="Panel de administración"
                    target="_blank" class="grey-text">
                     Admin
                 </a>
@@ -57,7 +57,7 @@
         <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
     </li>
     <li>
-        <a href="<?php echo $_SESSION['home'] ?>admin" title="Panel de administración"
+        <a href="<?php echo $_SESSION['home'] ?>panel" title="Panel de administración"
            target="_blank" class="grey-text">
             Admin
         </a>

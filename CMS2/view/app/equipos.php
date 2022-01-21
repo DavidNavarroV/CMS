@@ -11,7 +11,7 @@
                 <div class="card-stacked">
                     <div class="card-content">
                         <h4><?php echo $row->titulo ?></h4>
-                        <p><?php echo $row->entradilla ?></p>
+                        <p><?php echo $row->desc ?></p>
                     </div>
                     <div class="card-info">
                         <p><?php echo date("d/m/Y", strtotime($row->fecha)) ?></p>

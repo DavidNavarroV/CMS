@@ -12,7 +12,7 @@
             <div class="card-stacked">
                 <div class="card-content">
                     <h4><?php echo $datos->titulo ?></h4>
-                    <p><?php echo $datos->entradilla ?></p>
+                    <p><?php echo $datos->desc ?></p>
                     <p><?php echo $datos->texto ?></p>
                     <br>
                     <p>

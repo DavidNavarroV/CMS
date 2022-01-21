@@ -38,6 +38,7 @@ class AppController
         $this->view->vista("app", "index", $equipos);
     }
 
+
     public function acercade(){
 
         //Llamo a la vista
@@ -45,7 +46,7 @@ class AppController
 
     }
 
-    public function noticias(){
+    public function equipos(){
 
         //Consulta a la bbdd
         $rowset = $this->db->query("SELECT * FROM equipos WHERE activo=1 ORDER BY fecha DESC");
@@ -61,7 +62,7 @@ class AppController
 
     }
 
-    public function noticia($slug){
+    public function equipo($slug){
 
         //Consulta a la bbdd
         $rowset = $this->db->query("SELECT * FROM equipos WHERE activo=1 AND slug='$slug' LIMIT 1");
@@ -71,7 +72,7 @@ class AppController
         $equipo = new Equipos($row);
 
         //Llamo a la vista
-        $this->view->vista("app", "noticia", $equipo);
+        $this->view->vista("app", "equipo", $equipo);
 
     }
 }
