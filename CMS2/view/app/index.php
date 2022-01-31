@@ -4,7 +4,9 @@
         <article class="col m12 l6">
             <div class="card horizontal small">
                 <div class="card-image">
+
                     <img src="<?php echo $_SESSION['public']."img/".$row->imagen ?>" alt="<?php echo $row->titulo ?>">
+
                 </div>
                 <div class="card-stacked">
                     <div class="card-content">

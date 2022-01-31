@@ -1,5 +1,5 @@
 <h3>
-    <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a> <span>| Noticias</span>
+    <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a> <span>| Equipos</span>
 </h3>
 <div class="row">
     <?php foreach ($datos as $row){ ?>
@@ -17,7 +17,7 @@
                         <p><?php echo date("d/m/Y", strtotime($row->fecha)) ?></p>
                     </div>
                     <div class="card-action">
-                        <a href="<?php echo $_SESSION['home']."noticia/".$row->slug ?>">Más información</a>
+                        <a href="<?php echo $_SESSION['home']."equipo/".$row->slug ?>">Más información</a>
                     </div>
                 </div>
             </div>

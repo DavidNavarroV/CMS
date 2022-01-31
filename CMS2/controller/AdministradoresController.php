@@ -48,7 +48,7 @@ class AdministradoresController
             $campo_clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
 
             //Busco al usuario en la base de datos
-            $rowset = $this->db->query("SELECT * FROM administradores WHERE usuario='$campo_usuario' AND activo=1 LIMIT 1");
+            $rowset = $this->db->query("SELECT * FROM administradores WHERE persona='$campo_usuario' AND activo=1 LIMIT 1");
 
             //Asigno resultado a una instancia del modelo
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
@@ -60,26 +60,26 @@ class AdministradoresController
                 if (password_verify($campo_clave,$usuario->clave)) {
 
                     //Asigno el usuario y los permisos la sesión
-                    $_SESSION["usuario"] = $usuario->usuario;
-                    $_SESSION["administradores"] = $usuario->usuarios;
-                    $_SESSION["equipos"] = $usuario->noticias;
+                    $_SESSION["usuario"] = $usuario->persona;
+                    $_SESSION["administradores"] = $usuario->administradores;
+                    $_SESSION["equipos"] = $usuario->equipos;
 
                     //Guardo la fecha de último acceso
                     $ahora = new \DateTime("now", new \DateTimeZone("Europe/Madrid"));
                     $fecha = $ahora->format("Y-m-d H:i:s");
-                    $this->db->exec("UPDATE administradores SET fecha_acceso='$fecha' WHERE usuario='$campo_usuario'");
+                    $this->db->exec("UPDATE administradores SET fecha_acceso='$fecha' WHERE persona='$campo_usuario'");
 
                     //Redirección con mensaje
-                    $this->view->redireccionConMensaje("admin","green","Bienvenido al panel de administración.");
+                    $this->view->redireccionConMensaje("panel","green","Bienvenido al panel de administración.");
                 }
                 else{
                     //Redirección con mensaje
-                    $this->view->redireccionConMensaje("admin","red","Contraseña incorrecta.");
+                    $this->view->redireccionConMensaje("panel","red","Contraseña incorrecta.");
                 }
             }
             else{
                 //Redirección con mensaje
-                $this->view->redireccionConMensaje("admin","red","No existe ningún usuario con ese nombre.");
+                $this->view->redireccionConMensaje("panel","red","No existe ningún usuario con ese nombre.");
             }
         }
         //Le llevo a la página de acceso

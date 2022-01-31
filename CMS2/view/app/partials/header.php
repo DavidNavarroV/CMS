@@ -17,7 +17,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="<?php echo $_SESSION['home'] ?>" class="brand-logo" title="Inicio">
-            <img src="<?php echo $_SESSION['public'] ?>img/nba.jpg" alt="Logo Harry Potter">
+            <img src="<?php echo $_SESSION['public'] ?>img/nba.jpg" alt="Logo NBA">
         </a>
 
         <!--Botón menú móviles-->
@@ -29,7 +29,7 @@
                 <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a>
             </li>
             <li>
-                <a href="<?php echo $_SESSION['home'] ?>equipos" title="Noticias">Noticias</a>
+                <a href="<?php echo $_SESSION['home'] ?>equipos" title="Equipos">Equipos</a>
             </li>
             <li>
                 <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
@@ -51,7 +51,7 @@
         <a href="<?php echo $_SESSION['home'] ?>" title="Inicio">Inicio</a>
     </li>
     <li>
-        <a href="<?php echo $_SESSION['home'] ?>noticias" title="Noticias">Noticias</a>
+        <a href="<?php echo $_SESSION['home'] ?>Equipos" title="Equipos">Equipos</a>
     </li>
     <li>
         <a href="<?php echo $_SESSION['home'] ?>acerca-de" title="Acerca de">Acerca de</a>
@@ -67,7 +67,7 @@
 <main>
 
     <header>
-        <h1>Mi primer CMS</h1>
+        <h1>MI segundo CMS</h1>
         <h2>con POO, MVC, PHP y MySQL</h2>
     </header>
 

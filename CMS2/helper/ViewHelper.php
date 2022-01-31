@@ -31,7 +31,7 @@ class ViewHelper {
                 return true;
             }
             else{
-                $this->redireccionConMensaje("admin","yellow", "No tienes permiso para realizar esta operación");
+                $this->redireccionConMensaje("panel","yellow", "No tienes permiso para realizar esta operación");
             }
 
 

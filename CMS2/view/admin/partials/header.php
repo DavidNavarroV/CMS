@@ -16,8 +16,8 @@
 <nav>
     <div class="nav-wrapper">
         <!--Logo-->
-        <a href="<?php echo $_SESSION['home'] ?>admin" class="brand-logo" title="Inicio">
-            <img src="<?php echo $_SESSION['public'] ?>img/logo.svg" alt="Logo Harry Potter">
+        <a href="<?php echo $_SESSION['home'] ?>panel" class="brand-logo" title="Inicio">
+            <img src="<?php echo $_SESSION['public'] ?>img/nba.jpg" alt="Logo nba">
         </a>
 
         <?php if (isset($_SESSION['usuario'])){ ?>

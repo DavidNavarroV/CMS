@@ -74,7 +74,7 @@ switch ($ruta){
     case "equipos":
         controlador()->equipos();
         break;
-    case (strpos($ruta,"equipos/") === 0): //si empieza por noticia/
+    case (strpos($ruta,"equipo/") === 0): //si empieza por equipo/
         controlador()->equipo(str_replace("equipo/","",$ruta));
         break;
 

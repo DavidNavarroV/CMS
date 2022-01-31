@@ -10,7 +10,7 @@ class Administradores {
     var $clave;
     var $fecha_acceso;
     var $activo;
-    var $usuarios;
+    var $administradores;
     var $equipos;
 
     function __construct($data=null){
@@ -20,7 +20,7 @@ class Administradores {
         $this->clave = ($data) ? $data->clave : null;
         $this->fecha_acceso = ($data) ? $data->fecha_acceso : null;
         $this->activo = ($data) ? $data->activo : null;
-        $this->usuarios = ($data) ? $data->usuarios : null;
+        $this->administradores = ($data) ? $data->administradores : null;
         $this->equipos = ($data) ? $data->equipos : null;
 
     }

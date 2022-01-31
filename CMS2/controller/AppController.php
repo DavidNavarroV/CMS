@@ -67,12 +67,14 @@ class AppController
         //Consulta a la bbdd
         $rowset = $this->db->query("SELECT * FROM equipos WHERE activo=1 AND slug='$slug' LIMIT 1");
 
+
         //Asigno resultado a una instancia del modelo
         $row = $rowset->fetch(\PDO::FETCH_OBJ);
         $equipo = new Equipos($row);
 
         //Llamo a la vista
         $this->view->vista("app", "equipo", $equipo);
+
 
     }
 }

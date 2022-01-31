@@ -1,5 +1,5 @@
 <h3>
-    <a href="<?php echo $_SESSION['home'] ?>admin" title="Inicio">Inicio</a> <span>| Usuarios</span>
+    <a href="<?php echo $_SESSION['home'] ?>panel" title="Inicio">Inicio</a> <span>| Usuarios</span>
 </h3>
 <div class="row">
     <!--Nuevo-->
