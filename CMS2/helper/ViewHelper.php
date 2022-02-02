@@ -27,7 +27,7 @@ class ViewHelper {
         public function permisos($permiso=null){
 
 
-            if (isset($_SESSION['usuario']) AND ($permiso == null OR $_SESSION[$permiso] == 1)){
+            if (isset($_SESSION['persona']) AND ($permiso == null OR $_SESSION[$permiso] == 1)){
                 return true;
             }
             else{

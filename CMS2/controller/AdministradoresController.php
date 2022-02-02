@@ -42,8 +42,6 @@ class AdministradoresController
         }
         //Si ha pulsado el botón de acceder, tramito el formulario
         else if (isset($_POST["acceder"])){
-            echo "hola";
-
             //Recupero los datos del formulario
             $campo_usuario = filter_input(INPUT_POST, "usuario", FILTER_SANITIZE_STRING);
             $campo_clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
@@ -72,7 +70,7 @@ class AdministradoresController
                     $this->db->exec("UPDATE administradores SET fecha_acceso='$fecha' WHERE persona='$campo_usuario'");
 
                     //Redirección con mensaje
-                    $this->view->redireccionConMensaje("panel","green","Bienvenido al panel de administración.");
+                    $this->view->redireccionConMensaje("panel/index","green","Bienvenido al panel de administración.");
                 }
                 else{
                     //Redirección con mensaje
@@ -94,10 +92,10 @@ class AdministradoresController
     public function salir(){
 
         //Borro al usuario de la sesión
-        unset($_SESSION['usuario']);
+        unset($_SESSION['persona']);
 
         //Redirección con mensaje
-        $this->view->redireccionConMensaje("admin","green","Te has desconectado con éxito.");
+        $this->view->redireccionConMensaje("panel","green","Te has desconectado con éxito.");
 
     }
 

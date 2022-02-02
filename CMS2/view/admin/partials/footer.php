@@ -4,7 +4,7 @@
     © <?php echo date("Y") ?> Panel de Administración.
     <a href="https://jairogarciarincon.com" target="_blank" title="Jairo García Rincón">
         Jairo García Rincón
-    </a>
+    </a> <span>/David Navarro</span>
 </footer>
 
 
