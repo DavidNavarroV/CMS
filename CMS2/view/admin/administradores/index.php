@@ -13,7 +13,7 @@
                     </h4><br><br>
                 </div>
                 <div class="card-action">
-                    <a href="<?php echo $_SESSION['home']."admin/administradores/crear" ?>" title="Añadir nuevo usuario">
+                    <a href="<?php echo $_SESSION['home']."panel/administradores/crear" ?>" title="Añadir nuevo usuario">
                         <i class="material-icons">add_circle</i>
                     </a>
                 </div>
@@ -33,13 +33,13 @@
                         <strong>Noticias: </strong><?php echo ($row->noticias) ? "Sí" : "No" ?>
                     </div>
                     <div class="card-action">
-                        <a href="<?php echo $_SESSION['home']."admin/administradores/editar/".$row->id ?>" title="Editar">
+                        <a href="<?php echo $_SESSION['home']."panel/administradores/editar/".$row->id ?>" title="Editar">
                             <i class="material-icons">edit</i>
                         </a>
                         <?php $title = ($row->activo == 1) ? "Desactivar" : "Activar" ?>
                         <?php $color = ($row->activo == 1) ? "green-text" : "red-text" ?>
                         <?php $icono = ($row->activo == 1) ? "mood" : "mood_bad" ?>
-                        <a href="<?php echo $_SESSION['home']."admin/administradores/activar/".$row->id ?>" title="<?php echo $title ?>">
+                        <a href="<?php echo $_SESSION['home']."panel/administradores/activar/".$row->id ?>" title="<?php echo $title ?>">
                             <i class="<?php echo $color ?> material-icons"><?php echo $icono ?></i>
                         </a>
                         <a href="#" class="activator" title="Borrar">
@@ -54,7 +54,7 @@
                         ¿Está seguro de que quiere borrar al usuario<strong><?php echo $row->usuario ?></strong>?<br>
                         Esta acción no se puede deshacer.
                     </p>
-                    <a href="<?php echo $_SESSION['home']."admin/administradores/borrar/".$row->id ?>" title="Borrar">
+                    <a href="<?php echo $_SESSION['home']."panel/administradores/borrar/".$row->id ?>" title="Borrar">
                         <button class="btn waves-effect waves-light" type="button">Borrar
                             <i class="material-icons right">delete</i>
                         </button>

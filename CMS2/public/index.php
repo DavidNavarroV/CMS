@@ -10,7 +10,7 @@ use App\Controller\EquiposController;
 use App\Controller\AdministradoresController;
 
 
-//echo password_hash("1234Abc!", PASSWORD_BCRYPT, ['cost' => 12]);
+echo password_hash("1234Abcd!", PASSWORD_BCRYPT, ['cost' => 12]);
 
 
 /*
@@ -93,13 +93,13 @@ switch ($ruta){
         controlador("administradores")->crear();
         break;
     case (strpos($ruta,"panel/administradores/editar/") === 0):
-        controlador("administradores")->editar(str_replace("admin/administradores/editar/","",$ruta));
+        controlador("administradores")->editar(str_replace("panel/administradores/editar/","",$ruta));
         break;
     case (strpos($ruta,"panel/administradores/activar/") === 0):
-        controlador("administradores")->activar(str_replace("admin/administradores/activar/","",$ruta));
+        controlador("administradores")->activar(str_replace("panel/administradores/activar/","",$ruta));
         break;
     case (strpos($ruta,"panel/administradores/borrar/") === 0):
-        controlador("administradores")->borrar(str_replace("admin/administradores/borrar/","",$ruta));
+        controlador("administradores")->borrar(str_replace("panel/administradores/borrar/","",$ruta));
         break;
     case "panel/equipos":
         controlador("equipos")->index();
@@ -108,16 +108,16 @@ switch ($ruta){
         controlador("equipos")->crear();
         break;
     case (strpos($ruta,"panel/equipos/editar/") === 0):
-        controlador("equipos")->editar(str_replace("admin/equipos/editar/","",$ruta));
+        controlador("equipos")->editar(str_replace("panel/equipos/editar/","",$ruta));
         break;
     case (strpos($ruta,"panel/equipos/activar/") === 0):
-        controlador("equipos")->activar(str_replace("admin/equipos/activar/","",$ruta));
+        controlador("equipos")->activar(str_replace("panel/equipos/activar/","",$ruta));
         break;
     case (strpos($ruta,"panel/equipos/home/") === 0):
-        controlador("equipos")->home(str_replace("admin/equipos/home/","",$ruta));
+        controlador("equipos")->home(str_replace("panel/equipos/home/","",$ruta));
         break;
     case (strpos($ruta,"panel/equipos/borrar/") === 0):
-        controlador("equipos")->borrar(str_replace("admin/equipos/borrar/","",$ruta));
+        controlador("equipos")->borrar(str_replace("panel/equipos/borrar/","",$ruta));
         break;
     case (strpos($ruta,"panel/") === 0):
         controlador("administradores")->entrar();

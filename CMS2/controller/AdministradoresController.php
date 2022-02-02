@@ -35,34 +35,36 @@ class AdministradoresController
     public function entrar(){
 
         //Si ya está autenticado, le llevo a la página de inicio del panel
-        if (isset($_SESSION['usuario'])){
+        if (isset($_SESSION['persona'])){
 
             $this->admin();
 
         }
         //Si ha pulsado el botón de acceder, tramito el formulario
         else if (isset($_POST["acceder"])){
+            echo "hola";
 
             //Recupero los datos del formulario
             $campo_usuario = filter_input(INPUT_POST, "usuario", FILTER_SANITIZE_STRING);
             $campo_clave = filter_input(INPUT_POST, "clave", FILTER_SANITIZE_STRING);
+
 
             //Busco al usuario en la base de datos
             $rowset = $this->db->query("SELECT * FROM administradores WHERE persona='$campo_usuario' AND activo=1 LIMIT 1");
 
             //Asigno resultado a una instancia del modelo
             $row = $rowset->fetch(\PDO::FETCH_OBJ);
-            $usuario = new Administradores($row);
+            $persona = new Administradores($row);
 
             //Si existe el usuario
-            if ($usuario){
+            if ($persona->persona){
                 //Compruebo la clave
-                if (password_verify($campo_clave,$usuario->clave)) {
+                if (password_verify($campo_clave,$persona->clave)) {
 
                     //Asigno el usuario y los permisos la sesión
-                    $_SESSION["usuario"] = $usuario->persona;
-                    $_SESSION["administradores"] = $usuario->administradores;
-                    $_SESSION["equipos"] = $usuario->equipos;
+                    $_SESSION["persona"] = $persona->persona;
+                    $_SESSION["administradores"] = $persona->administradores;
+                    $_SESSION["equipos"] = $persona->equipos;
 
                     //Guardo la fecha de último acceso
                     $ahora = new \DateTime("now", new \DateTimeZone("Europe/Madrid"));
@@ -106,7 +108,7 @@ class AdministradoresController
         $this->view->permisos("administradores");
 
         //Recojo los administradores de la base de datos
-        $rowset = $this->db->query("SELECT * FROM administradores ORDER BY usuario ASC");
+        $rowset = $this->db->query("SELECT * FROM administradores ORDER BY persona ASC");
 
         //Asigno resultados a un array de instancias del modelo
         $usuarios = array();
@@ -136,8 +138,8 @@ class AdministradoresController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/administradores","green","El usuario <strong>$usuario->usuario</strong> se ha desactivado correctamente.") :
-                $this->view->redireccionConMensaje("admin/administradores","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("panel/administradores","green","El usuario <strong>$usuario->persona</strong> se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("panel/administradores","red","Hubo un error al guardar en la base de datos.");
         }
 
         else{
@@ -147,8 +149,8 @@ class AdministradoresController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/administradores","green","El usuario <strong>$usuario->usuario</strong> se ha activado correctamente.") :
-                $this->view->redireccionConMensaje("admin/administradores","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("panel/administradores","green","El usuario <strong>$usuario->usuario</strong> se ha activado correctamente.") :
+                $this->view->redireccionConMensaje("panel/administradores","red","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -163,8 +165,8 @@ class AdministradoresController
 
         //Mensaje y redirección
         ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-            $this->view->redireccionConMensaje("admin/administradores","green","El usuario se ha borrado correctamente.") :
-            $this->view->redireccionConMensaje("admin/administradores","red","Hubo un error al guardar en la base de datos.");
+            $this->view->redireccionConMensaje("panel/administradores","green","El usuario se ha borrado correctamente.") :
+            $this->view->redireccionConMensaje("panel/administradores","red","Hubo un error al guardar en la base de datos.");
 
     }
 
@@ -202,20 +204,20 @@ class AdministradoresController
             if ($id == "nuevo"){
 
                 //Creo un nuevo usuario
-                $this->db->exec("INSERT INTO administradores (usuario, clave, equipos, administradores) VALUES ('$usuario','$clave_encriptada',$equipos,$usuarios)");
+                $this->db->exec("INSERT INTO administradores (persona, clave, equipos, administradores) VALUES ('$usuario','$clave_encriptada',$equipos,$usuarios)");
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/administradores","green","El usuario <strong>$usuario</strong> se creado correctamente.");
+                $this->view->redireccionConMensaje("panel/administradores","green","El usuario <strong>$usuario</strong> se creado correctamente.");
             }
             else{
 
                 //Actualizo el usuario
                 ($cambiar_clave) ?
-                    $this->db->exec("UPDATE administradores SET usuario='$usuario',clave='$clave_encriptada',equipos=$equipos,administradores=$usuarios WHERE id='$id'") :
-                    $this->db->exec("UPDATE administradores SET usuario='$usuario',equipos=$equipos,administradores=$usuarios WHERE id='$id'");
+                    $this->db->exec("UPDATE administradores SET persona='$usuario',clave='$clave_encriptada',equipos=$equipos,administradores=$usuarios WHERE id='$id'") :
+                    $this->db->exec("UPDATE administradores SET persona='$usuario',equipos=$equipos,administradores=$usuarios WHERE id='$id'");
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/administradores","green","El usuario <strong>$usuario</strong> se actualizado correctamente.");
+                $this->view->redireccionConMensaje("panel/administradores","green","El usuario <strong>$usuario</strong> se actualizado correctamente.");
             }
         }
 
