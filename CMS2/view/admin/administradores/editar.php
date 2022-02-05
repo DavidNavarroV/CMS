@@ -1,18 +1,18 @@
 <h3>
     <a href="<?php echo $_SESSION['home'] ?>panel" title="Inicio">Inicio</a> <span>| </span>
-    <a href="<?php echo $_SESSION['home'] ?>panel/usuarios" title="Usuarios">Usuarios</a> <span>| </span>
+    <a href="<?php echo $_SESSION['home'] ?>panel/usuarios" title="Usuarios">Administradores</a> <span>| </span>
     <?php if ($datos->id){ ?>
-        <span>Editar <?php echo $datos->usuario ?></span>
+        <span>Editar <?php echo $datos->persona ?></span>
     <?php } else { ?>
         <span>Nuevo usuario</span>
     <?php } ?>
 </h3>
 <div class="row">
     <?php $id = ($datos->id) ? $datos->id : "nuevo" ?>
-    <form class="col m12 l6" method="POST" action="<?php echo $_SESSION['home'] ?>panel/usuarios/editar/<?php echo $id ?>">
+    <form class="col m12 l6" method="POST" action="<?php echo $_SESSION['home'] ?>panel/administradores/editar/<?php echo $id ?>">
         <div class="row">
             <div class="input-field col s12">
-                <input id="usuario" type="text" name="usuario" value="<?php echo $datos->usuario ?>">
+                <input id="usuario" type="text" name="usuario" value="<?php echo $datos->persona ?>">
                 <label for="usuario">Usuario</label>
             </div>
             <?php $clase = ($datos->id) ? "hide" : "" ?>
@@ -38,7 +38,7 @@
             </p>
             <p>
                 <label for="usuarios">
-                    <input id="usuarios" name="usuarios" type="checkbox" <?php echo ($datos->usuarios == 1) ? "checked" : "" ?>>
+                    <input id="usuarios" name="usuarios" type="checkbox" <?php echo ($datos->administradores == 1) ? "checked" : "" ?>>
                     <span>Usuarios</span>
                 </label>
             </p>
@@ -47,7 +47,7 @@
                 Último acceso: <strong><?php echo date("d/m/Y H:i", strtotime($datos->fecha_acceso)) ?></strong>
             </p>
             <div class="input-field col s12">
-                <a href="<?php echo $_SESSION['home'] ?>panel/usuarios" title="Volver">
+                <a href="<?php echo $_SESSION['home'] ?>panel/administradores" title="Volver">
                     <button class="btn waves-effect waves-light" type="button">Volver
                         <i class="material-icons right">replay</i>
                     </button>

@@ -59,8 +59,8 @@ class EquiposController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> se ha desactivado correctamente.") :
-                $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("panel/equipos","green","La noticia <strong>$equipo->titulo</strong> se ha desactivado correctamente.") :
+                $this->view->redireccionConMensaje("panel/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
         else{
@@ -70,8 +70,8 @@ class EquiposController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> se ha activado correctamente.") :
-                $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("panel/equipos","green","La noticia <strong>$equipo->titulo</strong> se ha activado correctamente.") :
+                $this->view->redireccionConMensaje("panel/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -94,8 +94,8 @@ class EquiposController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> ya no se muestra en la home.") :
-                $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("panel/equipos","green","La noticia <strong>$equipo->titulo</strong> ya no se muestra en la home.") :
+                $this->view->redireccionConMensaje("panel/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
         else{
@@ -105,8 +105,8 @@ class EquiposController
 
             //Mensaje y redirección
             ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$equipo->titulo</strong> ahora se muestra en la home.") :
-                $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
+                $this->view->redireccionConMensaje("panel/equipos","green","La noticia <strong>$equipo->titulo</strong> ahora se muestra en la home.") :
+                $this->view->redireccionConMensaje("panel/equipos","red","Hubo un error al guardar en la base de datos.");
         }
 
     }
@@ -134,8 +134,8 @@ class EquiposController
 
         //Mensaje y redirección
         ($consulta > 0) ? //Compruebo consulta para ver que no ha habido errores
-            $this->view->redireccionConMensaje("admin/equipos","green","La noticia se ha borrado correctamente$texto_imagen.") :
-            $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
+            $this->view->redireccionConMensaje("panel/equipos","green","La noticia se ha borrado correctamente$texto_imagen.") :
+            $this->view->redireccionConMensaje("panel/equipos","red","Hubo un error al guardar en la base de datos.");
 
     }
 
@@ -162,7 +162,7 @@ class EquiposController
 
             //Recupero los datos del formulario
             $titulo = filter_input(INPUT_POST, "titulo", FILTER_SANITIZE_STRING);
-            $desc = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
+            $descs = filter_input(INPUT_POST, "desc", FILTER_SANITIZE_STRING);
             $autor = filter_input(INPUT_POST, "autor", FILTER_SANITIZE_STRING);
             $fecha = filter_input(INPUT_POST, "fecha", FILTER_SANITIZE_STRING);
             $texto = filter_input(INPUT_POST, "texto", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -183,8 +183,8 @@ class EquiposController
 
                 //Creo una nueva noticia
                 $consulta = $this->db->exec("INSERT INTO equipos 
-                    (titulo, desc, autor, fecha, texto, slug, imagen) VALUES 
-                    ('$titulo','$desc','$autor','$fecha','$texto','$slug','$imagen')");
+                    (titulo,slug,texto,fecha,autor,imagen,`desc`) VALUES 
+                    ('$titulo','$slug','$texto','$fecha','$autor','$imagen','$descs')");
 
                 //Subo la imagen
                 if ($imagen){
@@ -198,15 +198,15 @@ class EquiposController
 
                 //Mensaje y redirección
                 ($consulta > 0) ?
-                    $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$titulo</strong> se creado correctamente.".$texto_img) :
-                    $this->view->redireccionConMensaje("admin/equipos","red","Hubo un error al guardar en la base de datos.");
+                    $this->view->redireccionConMensaje("panel/equipos","green","La noticia <strong>$titulo</strong> se creado correctamente.".$texto_img) :
+                    $this->view->redireccionConMensaje("panel/equipos","red","Hubo un error al guardar en la base de datos.");
             }
             else{
 
                 //Actualizo la noticia
                 $this->db->exec("UPDATE equipos SET 
-                    titulo='$titulo',entradilla='$desc',autor='$autor',
-                    fecha='$fecha',texto='$texto',slug='$slug' WHERE id='$id'");
+                    titulo='$titulo',autor='$autor',
+                    fecha='$fecha',texto='$texto',slug='$slug',`desc`='$descs' WHERE id='$id'");
 
                 //Subo y actualizo la imagen
                 if ($imagen){
@@ -220,7 +220,7 @@ class EquiposController
                 }
 
                 //Mensaje y redirección
-                $this->view->redireccionConMensaje("admin/equipos","green","La noticia <strong>$titulo</strong> se guardado correctamente.".$texto_img);
+                $this->view->redireccionConMensaje("panel/equipos","green","La noticia <strong>$titulo</strong> se guardado correctamente.".$texto_img);
 
             }
         }

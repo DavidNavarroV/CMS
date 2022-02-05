@@ -27,10 +27,10 @@
                     <div class="card-content">
                         <i class="material-icons medium">person</i>
                         <h4>
-                            <?php echo $row->usuario ?>
+                            <?php echo $row->persona ?>
                         </h4>
-                        <strong>Usuarios: </strong><?php echo ($row->usuarios) ? "Sí" : "No" ?><br>
-                        <strong>Noticias: </strong><?php echo ($row->noticias) ? "Sí" : "No" ?>
+                        <strong>Usuarios: </strong><?php echo ($row->administradores) ? "Sí" : "No" ?><br>
+                        <strong>Noticias: </strong><?php echo ($row->equipos) ? "Sí" : "No" ?>
                     </div>
                     <div class="card-action">
                         <a href="<?php echo $_SESSION['home']."panel/administradores/editar/".$row->id ?>" title="Editar">

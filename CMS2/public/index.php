@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+
 //Inicializo sesión para poder traspasar variables entre páginas
 session_start();
 
@@ -10,7 +11,7 @@ use App\Controller\EquiposController;
 use App\Controller\AdministradoresController;
 
 
-echo password_hash("1234Abcd!", PASSWORD_BCRYPT, ['cost' => 12]);
+//echo password_hash("1234Abcd!", PASSWORD_BCRYPT, ['cost' => 12]);
 
 
 /*
@@ -119,9 +120,7 @@ switch ($ruta){
     case (strpos($ruta,"panel/equipos/borrar/") === 0):
         controlador("equipos")->borrar(str_replace("panel/equipos/borrar/","",$ruta));
         break;
-    case (strpos($ruta,"panel/") === 0):
-        controlador("administradores")->entrar();
-        break;
+
 
     //Resto de rutas
     default:

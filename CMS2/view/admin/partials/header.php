@@ -16,7 +16,7 @@
 <nav>
     <div class="nav-wrapper">
         <!--Logo-->
-        <a href="<?php echo $_SESSION['home'] ?>panel" class="brand-logo" title="Inicio">
+        <a href="<?php echo $_SESSION['home'] ?>" class="brand-logo" title="Inicio">
             <img src="<?php echo $_SESSION['public'] ?>img/nba.jpg" alt="Logo nba">
         </a>
 

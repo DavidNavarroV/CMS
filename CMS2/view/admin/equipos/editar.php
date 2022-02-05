@@ -1,15 +1,15 @@
 <h3>
     <a href="<?php echo $_SESSION['home'] ?>admin" title="Inicio">Inicio</a> <span>| </span>
-    <a href="<?php echo $_SESSION['home'] ?>admin/noticias" title="Noticias">Noticias</a> <span>| </span>
+    <a href="<?php echo $_SESSION['home'] ?>admin/noticias" title="Noticias">Equipos</a> <span>| </span>
     <?php if ($datos->id){ ?>
         <span>Editar <?php echo $datos->titulo ?></span>
     <?php } else { ?>
-        <span>Nueva noticia</span>
+        <span>Nuevo equipo</span>
     <?php } ?>
 </h3>
 <div class="row">
     <?php $id = ($datos->id) ? $datos->id : "nuevo" ?>
-    <form class="col s12" method="POST" enctype="multipart/form-data" action="<?php echo $_SESSION['home'] ?>admin/noticias/editar/<?php echo $id ?>">
+    <form class="col s12" method="POST" enctype="multipart/form-data" action="<?php echo $_SESSION['home'] ?>panel/equipos/editar/<?php echo $id ?>">
         <div class="col m12 l6">
             <div class="row">
                 <div class="input-field col s12">
@@ -44,8 +44,8 @@
         <div class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-                    <textarea id="entradilla" class="materialize-textarea" name="entradilla"><?php echo $datos->entradilla ?></textarea>
-                    <label for="entradilla">Entradilla</label>
+                    <textarea id="entradilla" class="materialize-textarea" name="desc"><?php echo $datos->desc?></textarea>
+                    <label for="entradilla">Descripcion</label>
                 </div>
                 <div class="input-field col s12">
                     <textarea id="texto" class="materialize-textarea" name="texto"><?php echo $datos->texto ?></textarea>
@@ -56,7 +56,7 @@
 
         <div class="row">
             <div class="input-field col s12">
-                <a href="<?php echo $_SESSION['home'] ?>admin/noticias" title="Volver">
+                <a href="<?php echo $_SESSION['home'] ?>panel/equipos" title="Volver">
                     <button class="btn waves-effect waves-light" type="button">Volver
                         <i class="material-icons right">replay</i>
                     </button>
