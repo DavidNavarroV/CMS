@@ -84,6 +84,9 @@ switch ($ruta){
     case "panel/entrar":
         controlador("administradores")->entrar();
         break;
+    case "panel/index":
+        controlador("administradores")->admin();
+        break;
     case "panel/salir":
         controlador("administradores")->salir();
         break;

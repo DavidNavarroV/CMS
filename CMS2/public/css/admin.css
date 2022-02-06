@@ -11,7 +11,7 @@ body{
 }
 
 nav{
-    background-color: #333;
+    background-color: #1d418b;
     box-shadow: none;
     -webkit-box-shadow: none;
     padding: 0 2rem;
@@ -19,7 +19,7 @@ nav{
 
 nav img{
     width: 8rem;
-    padding-top: 0.8rem;
+
 }
 
 main {
@@ -53,6 +53,8 @@ footer a{
 footer a:hover{
     text-decoration: underline;
 }
+
+.nav-wrapper{background-color:#1d418b;}
 
 /* SECTION ************************************************************************************************************/
 
@@ -133,3 +135,4 @@ article .card-info{
 form p{
     padding-left: 0.8rem;
 }
+
